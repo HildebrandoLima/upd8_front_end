@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from './Button';
 import StateEnum from '../support/enums/StateEnum';
+import CityService from '../services/CityService';
 
 function Header({ onSearch }) {
   const [searchParams, setSearchParams] = useState({
@@ -11,6 +12,26 @@ function Header({ onSearch }) {
     state: '',
     city: ''
   });
+
+  const [cities, setCities] = useState([]);
+
+  const fetchCities = async (state) => {
+    if (!state) return;
+
+    try {
+      const response = await CityService.getCities(state);
+  
+      if (response.ok) {
+        const data = await response.json();
+        const citiesList = data.map(district => district.nome);
+        setCities(citiesList);
+      } else {
+        console.error('Falha ao obter dados:', response.status);
+      }
+    } catch (error) {
+      console.error('Erro ao buscar cidades:', error);
+    }
+  };
 
   const handleChange = (e) => {
     const { cpf, name, date_birth, sex, state, city, value } = e.target;
@@ -23,11 +44,14 @@ function Header({ onSearch }) {
       [state]: value,
       [city]: value,
     }));
+
+    if (name === 'state') {
+      fetchCities(value);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('searchParams: ', searchParams);
     onSearch(searchParams);
   };
 
@@ -157,6 +181,11 @@ function Header({ onSearch }) {
                   onChange={handleChange}
                 >
                   <option selected>Todos</option>
+                  {cities.map((city, index) => (
+                  <option key={index} value={city}>
+                  {city}
+                  </option>
+                  ))}
                 </select>
               </div>
             </div>
