@@ -1,0 +1,63 @@
+import React from 'react';
+import { useClient } from '../../hooks/client/Client';
+import Header from '../../components/Header';
+import Table from '../../components/Table';
+import Pagination from '../../components/Pagination';
+import Loading from '../../components/Loading';
+
+function Client() {
+  const { clients, loading, currentPage, totalPages, handleSearch, handleEdit, handleDelete, setCurrentPage } = useClient();
+
+  const columns = ["name", "cpf", 'dateBirth', "state", "cityName", "sex", "address"];
+  const columnAliases = {
+    name: "Cliente",
+    cpf: "CPF",
+    dateBirth: "Data de Nascimento",
+    state: "Estado",
+    cityName: "Cidade",
+    sex: "Sexo",
+    address: "Endereço",
+  };
+
+  const tableData = clients.map(client => ({
+    id: client.id,
+    name: client.name,
+    cpf: client.cpf,
+    sex: client.sex,
+    address: client.address,
+    cityName: client.city.cityName,
+    state: client.city.state
+  }));
+
+  return (
+    <div>
+      <Header onSearch={handleSearch} />
+      <div className="container">
+        <div className="card mt-3 border border-dark">
+          <div className="card-body">
+            {loading ? (
+              <Loading />
+            ) : (
+              <>
+                <Table
+                  columns={columns}
+                  data={tableData}
+                  columnAliases={columnAliases}
+                  onEdit={handleEdit}
+                  onDelete={handleDelete}
+                />
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  setCurrentPage={setCurrentPage}
+                />
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Client;

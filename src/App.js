@@ -1,4 +1,4 @@
-import Client from './hooks/pages/Client';
+import Client from './pages/client/ClientPage';
 
 function App() {
   return (

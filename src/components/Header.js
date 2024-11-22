@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import Button from '../shared/Button';
-import StateEnum from '../../support/enums/StateEnum';
+import Button from './Button';
+import StateEnum from '../support/enums/StateEnum';
 
 function Header({ onSearch }) {
-  const [cpf, setCpf] = useState('');
   const [searchParams, setSearchParams] = useState({
     cpf: '',
     name: '',
