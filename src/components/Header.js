@@ -1,71 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from './Button';
+import useHeaderHook from '../hooks/header/HeaderHook';
 import StateEnum from '../support/enums/StateEnum';
-import CityService from '../services/CityService';
 
 function Header({ onSearch }) {
-  const [searchParams, setSearchParams] = useState({
-    cpf: '',
-    name: '',
-    date_birth: '',
-    sex: '',
-    state: '',
-    city: ''
-  });
-
-  const [cities, setCities] = useState([]);
-
-  const fetchCities = async (state) => {
-    if (!state) return;
-
-    try {
-      const response = await CityService.getCities(state);
-  
-      if (response.ok) {
-        const data = await response.json();
-        const citiesList = data.map(district => district.nome);
-        setCities(citiesList);
-      } else {
-        console.error('Falha ao obter dados:', response.status);
-      }
-    } catch (error) {
-      console.error('Erro ao buscar cidades:', error);
-    }
-  };
-
-  const handleChange = (e) => {
-    const { cpf, name, date_birth, sex, state, city, value } = e.target;
-    setSearchParams(prevState => ({
-      ...prevState,
-      [cpf]: value,
-      [name]: value,
-      [date_birth]: value,
-      [sex]: value,
-      [state]: value,
-      [city]: value,
-    }));
-
-    if (name === 'state') {
-      fetchCities(value);
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSearch(searchParams);
-  };
-
-  const handleClear = () => {
-    setSearchParams({
-      name: '',
-      cpf: '',
-      date_birth: '',
-      sex: '',
-      state: '',
-      city: ''
-    });
-    onSearch({});
-  };
+  const {
+    searchParams,
+    cities,
+    handleChange,
+    handleSubmit,
+    handleClear
+  } = useHeaderHook(onSearch);
 
   return (
     <div className="container">
@@ -74,7 +19,6 @@ function Header({ onSearch }) {
           <h6 className="text-left mt-3">Consulta Cliente</h6>
           <form className="g-3 align-items-center mt-3" onSubmit={handleSubmit}>
             <div className="row">
-
               <div className="col-auto">
                 <label htmlFor="cpf" className="col-form-label">CPF</label>
               </div>
@@ -87,7 +31,7 @@ function Header({ onSearch }) {
                   value={searchParams.cpf}
                   onChange={handleChange}
                   placeholder="378.846.758-55"
-                  maxlength="14"
+                  maxLength="14"
                 />
               </div>
 
@@ -145,7 +89,6 @@ function Header({ onSearch }) {
                   <label className="form-check-label" htmlFor="F">Feminino</label>
                 </div>
               </div>
-
             </div>
 
             <div className="row mt-3">
@@ -160,7 +103,7 @@ function Header({ onSearch }) {
                   value={searchParams.state}
                   onChange={handleChange}
                 >
-                  <option value="" selected>Todos</option>
+                  <option value="">Todos</option>
                   {Object.keys(StateEnum).map((key) => (
                     <option key={key} value={StateEnum[key]}>
                       {StateEnum[key]}
@@ -180,11 +123,11 @@ function Header({ onSearch }) {
                   value={searchParams.city}
                   onChange={handleChange}
                 >
-                  <option selected>Todos</option>
+                  <option value="">Todos</option>
                   {cities.map((city, index) => (
-                  <option key={index} value={city}>
-                  {city}
-                  </option>
+                    <option key={index} value={city}>
+                      {city}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -203,7 +146,6 @@ function Header({ onSearch }) {
                 onClick={handleClear}
               />
             </div>
-
           </form>
         </div>
       </div>
