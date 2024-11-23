@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+## DESAFIO :UPD8
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Telas implementadas a partir do outro desafio conforme este link [upd8backend](https://github.com/HildebrandoLima/upd8_back_end). No projeto de front-end, abordo uma arquitetura limpa e distribuida, dividada em camadas como: Servives, Repositories, Config e Support.
 
-## Available Scripts
+No projeto abordo diversos temas com foco em demonstrar meu conhecimento com ReactJS.
 
-In the project directory, you can run:
+Exploro o ecossistema da biblioteca do ReactJS, utilizando funcionalidades como axios e bootstrap.
 
-### `npm start`
+### [Crie sua massa de testes para pessoa, CPF, CNPJ e afins, clicando aqui!](https://www.4devs.com.br/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Aplicação Web desenvolvida com:<br />
+- ReactJS<br />
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Funcionalidades (Atualmente desenvolvidas)
+<ul>
+    <li>Telas de cadastro, listagem, edição e consulta de cliente(s)</li>
+</ul>
 
-### `npm test`
+### Funcionalidades (A desenvolver)
+<ul>
+    <li>Telas de cadastro, listagem, edição e consulta de representante(s)</li>
+</ul>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### TELAS
 
-### `npm run build`
+### CONSULTA
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![CONSULTA](image.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### CADASTRO
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![CADASTRO](image-1.png)
 
-### `npm run eject`
+### EDIÇÃO
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![EDIÇÃO](image-2.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## PASSOS:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<details>
+<summary>Detalhes</summary>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Requesitos necessários para executar o projeto:
+<ul>
+    <li>Instalar o Node versão 22.11.0</li>
+    <li>Instalar o axios</li>
+    <li>Instalar o bootstrap</li>
+    <li>Instalar uma IDE de sua escolha (VSCode)</li>
+</ul>
 
-## Learn More
+### Executar o projeto:
+<ul>
+    <li>Clone o projeto: git clone https://github.com/HildebrandoLima/upd8_front_end.git</li>
+    <li>Adicione o arquivo env.js n apasta ./src/config</li>
+    <li>Execute o comando: npm install</li>
+    <li>Certifique-se que um diretório chamado `**/node_modules**` foi criado.</li>
+    <li>Execute o comando: npm install axios</li>
+    <li>Execute o comando: npm install bootstrap</li>
+    <li>Execute o comando: npm start</li>
+</ul>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Conectando com API:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+> No seu env.js adicione da seguinte forma:<br />
 
-### Code Splitting
+> const env = {<br />
+>     API_BASE_URL: 'http://localhost:8000/api/'<br />
+> };<br />
+> <br />
+> export default env;<br />
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Para iniciar aplicação:
+`npm start`
+Agora acesse o endereço http://localhost:3000 em seu navegador
+</details>
