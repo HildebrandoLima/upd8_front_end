@@ -17,7 +17,6 @@ function FormClient({
       onSubmit={handleSubmit}
       noValidate
     >
-
       <div className="row">
         <div className="col-auto">
           <label htmlFor="cpf" className="col-form-label">CPF</label>
@@ -28,7 +27,7 @@ function FormClient({
             id="cpf"
             name="cpf"
             className={`form-control ${errors.cpf ? 'is-invalid' : ''}`}
-            value={formData.cpf}
+            value={formData.cpf || ''}
             placeholder="378.846.758-55"
             maxLength="14"
             onChange={handleChange}
@@ -48,7 +47,7 @@ function FormClient({
             id="name"
             name="name"
             className={`form-control ${errors.name ? 'is-invalid' : ''}`}
-            value={formData.name}
+            value={formData.name || ''}
             onChange={handleChange}
             required
           />
@@ -66,7 +65,7 @@ function FormClient({
             id="date"
             name="date_birth"
             className={`form-control ${errors.date_birth ? 'is-invalid' : ''}`}
-            value={formData.date_birth}
+            value={formData.date_birth || ''}
             onChange={handleChange}
             required
           />
@@ -121,7 +120,7 @@ function FormClient({
             className={`form-select ${errors.state ? 'is-invalid' : ''}`}
             name="state"
             id="state"
-            value={formData.state}
+            value={formData.state || ''}
             onChange={handleChange}
             required
           >
@@ -145,7 +144,7 @@ function FormClient({
             className={`form-select ${errors.city_name ? 'is-invalid' : ''}`}
             name="city_name"
             id="city_name"
-            value={formData.city_name}
+            value={formData.city_name || ''}
             onChange={handleChange}
             required
           >
@@ -170,7 +169,7 @@ function FormClient({
             id="address"
             name="address"
             className={`form-control ${errors.address ? 'is-invalid' : ''}`}
-            value={formData.address}
+            value={formData.address || ''}
             onChange={handleChange}
             required
           />

@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
 
-function Table({ columns, data, columnAliases, onEdit, onDelete }) {
+function Table({ columns, data, columnAliases, onDelete }) {
   return (
     <div class="table-responsive">
         <table className="table table-striped table-hover mt-3">
@@ -18,11 +18,12 @@ function Table({ columns, data, columnAliases, onEdit, onDelete }) {
                 {data.map((item) => (
                 <tr key={item.id}>
                     <td>
-                    <Button
-                        title="Editar"
-                        color="success"
-                        onClick={() => onEdit(item.id)}
-                    />
+                    <a href={`/alterar/${item.id}`}>
+                        <Button
+                            title="Editar"
+                            color="success"
+                        />
+                    </a>
                     </td>
                     <td>
                     <Button

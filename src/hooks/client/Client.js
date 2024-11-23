@@ -30,10 +30,6 @@ export function useClient() {
     setCurrentPage(1);
   };
 
-  const handleEdit = (id) => {
-    alert(`Editar cliente com ID: ${id}`);
-  };
-
   const handleDelete = async (name, id) => {
     const confirmDelete = window.confirm(`Tem certeza que deseja excluir o cliente: ${name}?`);
     if (confirmDelete) {
@@ -52,5 +48,5 @@ export function useClient() {
     }
   };
 
-  return { clients, loading, currentPage, totalPages, handleSearch, handleEdit, handleDelete, setCurrentPage };
+  return { clients, loading, currentPage, totalPages, handleSearch, handleDelete, setCurrentPage };
 }

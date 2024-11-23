@@ -17,9 +17,29 @@ export const ClientRepository = {
     }
   },
 
+  getClient: async (id) => {
+    try {
+      const response = await api.get(`client/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao fazer requisição", error.message);
+      return { list: []};
+    }
+  },
+
   postClient: async (body) => {
     try {
       const response = await api.post(`client/create`, body);
+      return response;
+    } catch (error) {
+      console.error("Erro ao fazer requisição", error.message);
+      return error;
+    }
+  },
+
+  putClient: async (body) => {
+    try {
+      const response = await api.put(`client/update`, body);
       return response;
     } catch (error) {
       console.error("Erro ao fazer requisição", error.message);

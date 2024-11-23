@@ -6,7 +6,7 @@ import Pagination from '../../components/Pagination';
 import Loading from '../../components/Loading';
 
 function Client() {
-  const { clients, loading, currentPage, totalPages, handleSearch, handleEdit, handleDelete, setCurrentPage } = useClient();
+  const { clients, loading, currentPage, totalPages, handleSearch, handleDelete, setCurrentPage } = useClient();
 
   const columns = ["name", "cpf", 'dateBirth', "state", "cityName", "sex", "address"];
   const columnAliases = {
@@ -43,7 +43,6 @@ function Client() {
                   columns={columns}
                   data={tableData}
                   columnAliases={columnAliases}
-                  onEdit={handleEdit}
                   onDelete={handleDelete}
                 />
                 <Pagination
