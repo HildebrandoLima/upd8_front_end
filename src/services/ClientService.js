@@ -1,23 +1,57 @@
-import { ClientRepository } from '../repositories/ClientRepository';
+import ClientRepository from '../repositories/ClientRepository';
+import GenerateQueryString from '../support/queryParams/QueryParams';
 
-export const ClientService = {
+const ClientService = {
   getClients: async (page = 1, filters = {}) => {
-    return await ClientRepository.getClients(page, 10, filters);
+    const queryParams = GenerateQueryString(page, 10, filters);
+    try {
+      const response = await ClientRepository.getClients(queryParams);
+      return response.data.data;
+    } catch (error) {
+      console.error("Erro ao fazer requisição", error.message);
+      return { list: [], total: 0 };
+    }
   },
 
   getClient: async (id) => {
-    return await ClientRepository.getClient(id);
+    try {
+      const response = await ClientRepository.getClient(id);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao fazer requisição", error.message);
+      return { list: []};
+    }
   },
 
   postClient: async (body) => {
-    return await ClientRepository.postClient(body);
+    try {
+      const response = await ClientRepository.postClient(body);
+      return response;
+    } catch (error) {
+      console.error("Erro ao fazer requisição", error.message);
+      return error;
+    }
   },
 
   putClient: async (body) => {
-    return await ClientRepository.putClient(body);
+    try {
+      const response = ClientRepository.putClient(body);
+      return response;
+    } catch (error) {
+      console.error("Erro ao fazer requisição", error.message);
+      return error;
+    }
   },
 
   deleteClient: async (id) => {
-    return await ClientRepository.deleteClient(id);
+    try {
+      const response = await ClientRepository.deleteClient(id);
+      return response;
+    } catch (error) {
+      console.error("Erro ao fazer requisição", error.message);
+      return 400;
+    }
   }
 };
+
+export default ClientService;

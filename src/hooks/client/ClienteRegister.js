@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import CityService from '../../services/CityService';
-import { ClientService } from '../../services/ClientService';
+import ClientService from '../../services/ClientService';
 
 function useClientRegister() {
     const [errors, setErrors] = useState({});

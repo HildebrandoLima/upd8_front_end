@@ -1,9 +1,9 @@
 import React from 'react';
 import { useClient } from '../../hooks/client/Client';
-import Header from '../../components/Header';
-import Table from '../../components/Table';
-import Pagination from '../../components/Pagination';
-import Loading from '../../components/Loading';
+import Header from '../../components/shared/Header';
+import Table from '../../components/shared/Table';
+import Pagination from '../../components/shared/Pagination';
+import Loading from '../../components/shared/Loading';
 
 function Client() {
   const { clients, loading, currentPage, totalPages, handleSearch, handleDelete, setCurrentPage } = useClient();
@@ -24,6 +24,7 @@ function Client() {
     name: client.name,
     cpf: client.cpf,
     sex: client.sex,
+    dateBirth: client.dateBirth,
     address: client.address,
     cityName: client.city.cityName,
     state: client.city.state

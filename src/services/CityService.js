@@ -1,8 +1,14 @@
-import { CityRepository } from '../repositories/CityRepository';
+import CityRepository from '../repositories/CityRepository';
 
 const CityService = {
   getCities: async (state) => {
-    return await CityRepository.getCities(state);
+    try {
+      const response = await CityRepository.getCities(state);
+      return response;
+    } catch (error) {
+      console.error("Erro ao fazer requisição", error.message);
+      return [];
+    }
   }
 };
 

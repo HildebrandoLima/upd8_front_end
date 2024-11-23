@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import CityService from '../../services/CityService';
-import { ClientService } from '../../services/ClientService';
+import ClientService from '../../services/ClientService';
 
 const ClientUpdate = () => {
   const [errors, setErrors] = useState({});

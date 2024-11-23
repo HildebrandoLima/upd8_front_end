@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
-import useHeaderHook from '../hooks/header/HeaderHook';
-import StateEnum from '../support/enums/StateEnum';
+import useHeaderHook from '../../hooks/header/HeaderHook';
+import StateEnum from '../../support/enums/StateEnum';
 
 function Header({ onSearch }) {
   const {

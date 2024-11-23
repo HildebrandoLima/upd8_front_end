@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ClientService } from '../../services/ClientService';
+import ClientService from '../../services/ClientService';
 
 export function useClient() {
   const [clients, setClients] = useState([]);
@@ -35,7 +35,7 @@ export function useClient() {
     if (confirmDelete) {
       try {
         const response = await ClientService.deleteClient(id);
-        if (response === 200) {
+        if (response.status === 200) {
           setClients(clients.filter(client => client.id !== id));
           alert(`Cliente: ${name} excluído com sucesso.`);
         } else {
