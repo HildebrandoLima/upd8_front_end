@@ -5,6 +5,10 @@ export const ClientService = {
     return await ClientRepository.getClients(page, 10, filters);
   },
 
+  postClient: async (body) => {
+    return await ClientRepository.postClient(body);
+  },
+
   deleteClient: async (id) => {
     return await ClientRepository.deleteClient(id);
   }

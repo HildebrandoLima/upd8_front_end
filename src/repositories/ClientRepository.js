@@ -17,6 +17,16 @@ export const ClientRepository = {
     }
   },
 
+  postClient: async (body) => {
+    try {
+      const response = await api.post(`client/create`, body);
+      return response;
+    } catch (error) {
+      console.error("Erro ao fazer requisição", error.message);
+      return error;
+    }
+  },
+
   deleteClient: async (id) => {
     try {
       const response = await api.delete(`client/delete/${id}`);
