@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import CityService from '../../services/CityService';
+import FormatCPF from '../../support/formatField/FormatCPF';
 
 function HeaderHook(onSearch) {
   const [cities, setCities] = useState([]);
@@ -32,10 +33,19 @@ function HeaderHook(onSearch) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setSearchParams(prevState => ({
-      ...prevState,
-      [name]: value,
-    }));
+
+    if (name === 'cpf') {
+      setSearchParams((prevData) => ({
+          ...prevData,
+          [name]: FormatCPF(value),
+      }));
+
+    } else {
+      setSearchParams((prevData) => ({
+          ...prevData,
+          [name]: value,
+      }));
+    } 
   };
 
   const handleSubmit = (e) => {

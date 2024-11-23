@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import CityService from '../../services/CityService';
 import ClientService from '../../services/ClientService';
+import FormatCPF from '../../support/formatField/FormatCPF';
 
 function ClientCreate() {
     const [errors, setErrors] = useState({});
@@ -40,10 +41,19 @@ function ClientCreate() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
+
+        if (name === 'cpf') {
+            setFormData((prevData) => ({
+                ...prevData,
+                [name]: FormatCPF(value),
+            }));
+
+        } else {
+            setFormData((prevData) => ({
+                ...prevData,
+                [name]: value,
+            }));
+        }
     };
 
     const handleSubmit = async (e) => {
