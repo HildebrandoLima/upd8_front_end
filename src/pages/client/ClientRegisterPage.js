@@ -4,7 +4,7 @@ import useClientRegister from '../../hooks/client/ClienteRegister';
 import StateEnum from '../../support/enums/StateEnum';
 
 function ClientRegister() {
-  const { cities, formData, handleChange, handleSubmit, handleClear } = useClientRegister();
+  const { cities, formData, errors, handleChange, handleSubmit, handleClear } = useClientRegister();
 
   return (
     <div className="container">
@@ -29,6 +29,7 @@ function ClientRegister() {
                   onChange={handleChange}
                   required
                 />
+                {errors.cpf && <small className="text-danger">{errors.cpf}</small>}
               </div>
 
               <div className="col-auto">
@@ -44,6 +45,7 @@ function ClientRegister() {
                   onChange={handleChange}
                   required
                 />
+                {errors.name && <small className="text-danger">{errors.name}</small>}
               </div>
 
               <div className="col-auto">
@@ -59,6 +61,7 @@ function ClientRegister() {
                   onChange={handleChange}
                   required
                 />
+                {errors.date_birth && <small className="text-danger">{errors.date_birth}</small>}
               </div>
 
               <div className="col-auto d-flex">
@@ -73,8 +76,10 @@ function ClientRegister() {
                     onChange={handleChange}
                     required
                   />
+                  {errors.sex && <small className="text-danger">{errors.sex}</small>}
                   <label className="form-check-label" htmlFor="M">Masculino</label>
                 </div>
+
                 <div className="form-check">
                   <input
                     className="form-check-input"
@@ -86,6 +91,7 @@ function ClientRegister() {
                     onChange={handleChange}
                     required
                   />
+                  {errors.sex && <small className="text-danger">{errors.sex}</small>}
                   <label className="form-check-label" htmlFor="F">Feminino</label>
                 </div>
               </div>
@@ -111,6 +117,7 @@ function ClientRegister() {
                     </option>
                   ))}
                 </select>
+                {errors.state && <small className="text-danger">{errors.state}</small>}
               </div>
 
               <div className="col-auto">
@@ -132,6 +139,7 @@ function ClientRegister() {
                     </option>
                   ))}
                 </select>
+                {errors.city_name && <small className="text-danger">{errors.city_name}</small>}
               </div>
 
               <div className="col-auto">
@@ -147,6 +155,7 @@ function ClientRegister() {
                   onChange={handleChange}
                   required
                 />
+                {errors.address && <small className="text-danger">{errors.address}</small>}
               </div>
             </div>
 

@@ -3,6 +3,7 @@ import CityService from '../../services/CityService';
 import { ClientService } from '../../services/ClientService';
 
 function useClientRegister() {
+    const [errors, setErrors] = useState({});
     const [cities, setCities] = useState([]);
     const [formData, setFormData] = useState({
         cpf: '',
@@ -13,7 +14,6 @@ function useClientRegister() {
         city: '',
         address: '',
     });
-    const [errors, setErrors] = useState({});
 
     const fetchCities = async (state) => {
         if (!state) return;
@@ -55,10 +55,9 @@ function useClientRegister() {
                 alert('Cadastro realizado com sucesso!');
                 setErrors({});
             } else {
-                const { data } = response;
-                console.log('Erro:', data);
-                setErrors(data.error || {});
-                alert(data.message || 'Erro ao enviar os dados.');
+                const dataErros = response.response.data.data;
+                setErrors(dataErros || {});
+                alert(response.response.message || 'Erro ao enviar os dados.');
             }
         } catch (error) {
             console.error("Erro ao enviar os dados", error);
@@ -77,7 +76,7 @@ function useClientRegister() {
             address: '',
         });
         setCities([]);
-        setErrors({}); // Limpar os erros ao limpar o formulário
+        setErrors({});
     };
 
     return {
@@ -86,7 +85,7 @@ function useClientRegister() {
         handleChange,
         handleSubmit,
         handleClear,
-        errors, // Expor o estado de erros para o componente
+        errors,
     };
 }
 
