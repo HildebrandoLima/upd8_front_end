@@ -1,7 +1,7 @@
-import { useState, useEffect  } from 'react';
+import { useState, useEffect } from 'react';
 import CityService from '../../services/CityService';
 
-function useHeaderHook(onSearch) {
+function HeaderHook(onSearch) {
   const [cities, setCities] = useState([]);
   const [searchParams, setSearchParams] = useState({
     cpf: '',
@@ -16,7 +16,7 @@ function useHeaderHook(onSearch) {
     try {
       const response = await CityService.getCities();
       if (response.status === 200) {
-        setCities(response.data);
+        setCities(response.data.data);
       } else {
         console.error('Falha ao obter dados:', response.status);
       }
@@ -27,7 +27,8 @@ function useHeaderHook(onSearch) {
 
   useEffect(() => {
     fetchCities();
-  }, []);
+    console.log('cities updated: ', cities);
+  }, [cities]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -63,4 +64,4 @@ function useHeaderHook(onSearch) {
   };
 }
 
-export default useHeaderHook;
+export default HeaderHook;

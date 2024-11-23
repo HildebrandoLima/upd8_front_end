@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from './Button';
-import useHeaderHook from '../../hooks/header/HeaderHook';
+import HeaderHook from '../../hooks/header/HeaderHook';
 import StateEnum from '../../support/enums/StateEnum';
 
 function Header({ onSearch }) {
@@ -10,7 +10,7 @@ function Header({ onSearch }) {
     handleChange,
     handleSubmit,
     handleClear
-  } = useHeaderHook(onSearch);
+  } = HeaderHook(onSearch);
 
   return (
     <div className="container">
@@ -123,10 +123,10 @@ function Header({ onSearch }) {
                   value={searchParams.city}
                   onChange={handleChange}
                 >
-                  <option value="">Todos</option>
-                  {cities && Array.isArray(cities) && cities.length > 0 ? (
+                  <option value="">Todas</option>
+                  {cities && cities.length > 0 ? (
                     cities.map((city, index) => (
-                      <option key={index} value={city.id}>
+                      <option key={index} value={city.cityName}>
                         {city.cityName}
                       </option>
                     ))

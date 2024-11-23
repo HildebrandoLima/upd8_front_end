@@ -6,7 +6,14 @@ export function useClient() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState({
+    cpf: '',
+    name: '',
+    date_birth: '',
+    sex: '',
+    state: '',
+    city: '',
+  });
 
   const fetchClients = async (page = 1, filters = {}) => {
     try {
