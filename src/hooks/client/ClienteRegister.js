@@ -19,7 +19,7 @@ function useClientRegister() {
         if (!state) return;
 
         try {
-            const response = await CityService.getCities(state);
+            const response = await CityService.getCitiesIntegration(state);
             if (response.ok) {
                 const data = await response.json();
                 const citiesList = data.map(district => district.nome);

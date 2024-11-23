@@ -124,11 +124,15 @@ function Header({ onSearch }) {
                   onChange={handleChange}
                 >
                   <option value="">Todos</option>
-                  {cities.map((city, index) => (
-                    <option key={index} value={city}>
-                      {city}
-                    </option>
-                  ))}
+                  {cities && Array.isArray(cities) && cities.length > 0 ? (
+                    cities.map((city, index) => (
+                      <option key={index} value={city.id}>
+                        {city.cityName}
+                      </option>
+                    ))
+                  ) : (
+                    <option disabled>Carregando cidades...</option>
+                  )}
                 </select>
               </div>
             </div>
