@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../components/Button';
 import useClientRegister from '../../hooks/client/ClienteRegister';
 import StateEnum from '../../support/enums/StateEnum';
 
 function ClientRegister() {
   const { cities, formData, errors, handleChange, handleSubmit, handleClear } = useClientRegister();
+  const [formValid, setFormValid] = useState(false);
+
+  const validateForm = () => {
+    let isValid = true;
+    Object.values(errors).forEach(error => {
+      if (error) {
+        isValid = false;
+      }
+    });
+    setFormValid(isValid);
+    return isValid;
+  }
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    if (validateForm()) {
+      handleSubmit(event);
+    } else {
+      event.target.classList.add('was-validated');
+    }
+  };
 
   return (
     <div className="container">
@@ -12,7 +33,11 @@ function ClientRegister() {
         <div className="card-body">
           <h6 className="text-left mt-3">Cadastro Cliente</h6>
 
-          <form className="g-3 align-items-center mt-3" onSubmit={handleSubmit}>
+          <form
+            className="g-3 align-items-center mt-3 needs-validation"
+            onSubmit={handleFormSubmit}
+            noValidate
+          >
             <div className="row">
               <div className="col-auto">
                 <label htmlFor="cpf" className="col-form-label">CPF</label>
@@ -22,14 +47,16 @@ function ClientRegister() {
                   type="text"
                   id="cpf"
                   name="cpf"
-                  className="form-control"
+                  className={`form-control ${errors.cpf ? 'is-invalid' : ''}`}
                   value={formData.cpf}
                   placeholder="378.846.758-55"
                   maxLength="14"
                   onChange={handleChange}
                   required
                 />
-                {errors.cpf && <small className="text-danger">{errors.cpf}</small>}
+                <div className="invalid-feedback">
+                  {errors.cpf ? errors.cpf : 'Campo obrigatório'}
+                </div>
               </div>
 
               <div className="col-auto">
@@ -40,12 +67,14 @@ function ClientRegister() {
                   type="text"
                   id="name"
                   name="name"
-                  className="form-control"
+                  className={`form-control ${errors.name ? 'is-invalid' : ''}`}
                   value={formData.name}
                   onChange={handleChange}
                   required
                 />
-                {errors.name && <small className="text-danger">{errors.name}</small>}
+                <div className="invalid-feedback">
+                  {errors.name ? errors.name : 'Campo obrigatório'}
+                </div>
               </div>
 
               <div className="col-auto">
@@ -56,12 +85,14 @@ function ClientRegister() {
                   type="date"
                   id="date"
                   name="date_birth"
-                  className="form-control"
+                  className={`form-control ${errors.date_birth ? 'is-invalid' : ''}`}
                   value={formData.date_birth}
                   onChange={handleChange}
                   required
                 />
-                {errors.date_birth && <small className="text-danger">{errors.date_birth}</small>}
+                <div className="invalid-feedback">
+                  {errors.date_birth ? errors.date_birth : 'Campo obrigatório'}
+                </div>
               </div>
 
               <div className="col-auto d-flex">
@@ -76,7 +107,6 @@ function ClientRegister() {
                     onChange={handleChange}
                     required
                   />
-                  {errors.sex && <small className="text-danger">{errors.sex}</small>}
                   <label className="form-check-label" htmlFor="M">Masculino</label>
                 </div>
 
@@ -91,8 +121,10 @@ function ClientRegister() {
                     onChange={handleChange}
                     required
                   />
-                  {errors.sex && <small className="text-danger">{errors.sex}</small>}
                   <label className="form-check-label" htmlFor="F">Feminino</label>
+                </div>
+                <div className="invalid-feedback">
+                  {errors.sex ? errors.sex : 'Selecione uma opção'}
                 </div>
               </div>
             </div>
@@ -103,7 +135,7 @@ function ClientRegister() {
               </div>
               <div className="col-auto">
                 <select
-                  className="form-select"
+                  className={`form-select ${errors.state ? 'is-invalid' : ''}`}
                   name="state"
                   id="state"
                   value={formData.state}
@@ -117,7 +149,9 @@ function ClientRegister() {
                     </option>
                   ))}
                 </select>
-                {errors.state && <small className="text-danger">{errors.state}</small>}
+                <div className="invalid-feedback">
+                  {errors.state ? errors.state : 'Selecione um estado'}
+                </div>
               </div>
 
               <div className="col-auto">
@@ -125,7 +159,7 @@ function ClientRegister() {
               </div>
               <div className="col-auto">
                 <select
-                  className="form-select"
+                  className={`form-select ${errors.city_name ? 'is-invalid' : ''}`}
                   name="city_name"
                   id="city_name"
                   value={formData.city_name}
@@ -139,7 +173,9 @@ function ClientRegister() {
                     </option>
                   ))}
                 </select>
-                {errors.city_name && <small className="text-danger">{errors.city_name}</small>}
+                <div className="invalid-feedback">
+                  {errors.city_name ? errors.city_name : 'Selecione uma cidade'}
+                </div>
               </div>
 
               <div className="col-auto">
@@ -150,12 +186,14 @@ function ClientRegister() {
                   type="text"
                   id="address"
                   name="address"
-                  className="form-control"
+                  className={`form-control ${errors.address ? 'is-invalid' : ''}`}
                   value={formData.address}
                   onChange={handleChange}
                   required
                 />
-                {errors.address && <small className="text-danger">{errors.address}</small>}
+                <div className="invalid-feedback">
+                  {errors.address ? errors.address : 'Campo obrigatório'}
+                </div>
               </div>
             </div>
 
@@ -164,6 +202,7 @@ function ClientRegister() {
                 title="Enviar"
                 color="primary"
                 type="submit"
+                disabled={!formValid}
               />
               &nbsp;&nbsp;&nbsp;
               <Button
