@@ -6,10 +6,6 @@ const ClientUpdate = () => {
   const [errors, setErrors] = useState({});
   const [cities, setCities] = useState([]);
   const [formData, setFormData] = useState({
-    cpf: '',
-    name: '',
-    date_birth: '',
-    sex: '',
     state: '',
     city_name: '',
     address: '',
@@ -62,16 +58,29 @@ const ClientUpdate = () => {
     });
   };
 
-  const handleSubmit = (event) => {
-    console.log('Formulário enviado:', formData);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await ClientService.putClient(formData);
+      console.log(response);
+      if (response.status === 200) {
+          alert('Edição realizada com sucesso!');
+          handleClear();
+          setErrors({});
+      } else {
+          const dataErros = response.response.data.data;
+          setErrors(dataErros || {});
+          alert(response.response.message || 'Erro ao enviar os dados.');
+      }
+    } catch (error) {
+        console.error("Erro ao enviar os dados", error);
+        alert('Ocorreu um erro ao enviar o formulário!');
+    }
   };
 
   const handleClear = () => {
     setFormData({
-      cpf: '',
-      name: '',
-      date_birth: '',
-      sex: '',
       state: '',
       city_name: '',
       address: '',
