@@ -53,6 +53,7 @@ function useClientRegister() {
             const response = await ClientService.postClient(formData);
             if (response.status === 200) {
                 alert('Cadastro realizado com sucesso!');
+                handleClear();
                 setErrors({});
             } else {
                 const dataErros = response.response.data.data;
