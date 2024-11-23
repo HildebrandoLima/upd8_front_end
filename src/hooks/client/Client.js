@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import ClientService from '../../services/ClientService';
 
-export function useClient() {
+function Client() {
   const [clients, setClients] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -57,3 +57,5 @@ export function useClient() {
 
   return { clients, loading, currentPage, totalPages, handleSearch, handleDelete, setCurrentPage };
 }
+
+export default Client;

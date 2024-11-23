@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import FormClient from '../../components/client/FormClient';
-import useClientRegister from '../../hooks/client/ClienteRegister';
+import useClientCreate from '../../hooks/client/ClienteCreate';
 
-function ClientRegister() {
-  const { cities, formData, errors, handleChange, handleSubmit, handleClear } = useClientRegister();
+function ClientCreate() {
+  const { cities, formData, errors, handleChange, handleSubmit, handleClear } = useClientCreate();
   const [formValid, setFormValid] = useState(false);
   const isEdit = false;
 
@@ -50,4 +50,4 @@ function ClientRegister() {
   );
 }
 
-export default ClientRegister;
+export default ClientCreate;

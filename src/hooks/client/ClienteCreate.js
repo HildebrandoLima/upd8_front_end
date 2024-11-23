@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import CityService from '../../services/CityService';
 import ClientService from '../../services/ClientService';
 
-function useClientRegister() {
+function ClientCreate() {
     const [errors, setErrors] = useState({});
     const [cities, setCities] = useState([]);
     const [formData, setFormData] = useState({
@@ -90,4 +90,4 @@ function useClientRegister() {
     };
 }
 
-export default useClientRegister;
+export default ClientCreate;

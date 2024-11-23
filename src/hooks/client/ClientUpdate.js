@@ -6,9 +6,11 @@ const ClientUpdate = () => {
   const [errors, setErrors] = useState({});
   const [cities, setCities] = useState([]);
   const [formData, setFormData] = useState({
+    client_id: 0,
+    city_id: 0,
+    address: '',
     state: '',
     city_name: '',
-    address: '',
   });
 
   const fetchClient = async (id) => {
@@ -17,13 +19,15 @@ const ClientUpdate = () => {
       if (response.status === 200) {
         const data = response.data[0];
         setFormData({
+            client_id: data.id,
             cpf: data.cpf,
             name: data.name || '',
             date_birth: data.dateBirth || '',
             sex: data.sex || '',
+            address: data.address || '',
             state: data.city.state || '',
             city_name: data.city.cityName || '',
-            address: data.address || '',
+            city_id: data.city.id,
         });
       } else {
         console.error('Erro ao buscar os dados do cliente');
@@ -60,9 +64,16 @@ const ClientUpdate = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const body = {
+      client_id: formData.client_id,
+      city_id: formData.city_id,
+      address: formData.address,
+      state: formData.state,
+      city_name: formData.city_name,
+    };
 
     try {
-      const response = await ClientService.putClient(formData);
+      const response = await ClientService.putClient(body);
       console.log(response);
       if (response.status === 200) {
           alert('Edição realizada com sucesso!');

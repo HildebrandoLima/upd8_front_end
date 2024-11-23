@@ -1,5 +1,5 @@
 import React from 'react';
-import { useClient } from '../../hooks/client/Client';
+import useClient from '../../hooks/client/Client';
 import Header from '../../components/shared/Header';
 import Table from '../../components/shared/Table';
 import Pagination from '../../components/shared/Pagination';
