@@ -13,12 +13,11 @@ Exploro o ecossistema da biblioteca do ReactJS, utilizando funcionalidades como 
 
 ### Funcionalidades (Atualmente desenvolvidas)
 <ul>
-    <li>Telas de cadastro, listagem, edição e consulta de cliente(s)</li>
-</ul>
-
-### Funcionalidades (A desenvolver)
-<ul>
-    <li>Telas de cadastro, listagem, edição e consulta de representante(s)</li>
+    <li>Cadastro de Cliente</li>
+    <li>Listagem e Consulta de Clientes</li>
+    <li>Edição de Cliente</li>
+    <li>Remoção de Cliente</li>
+    <li>[Integração com API do IBGE, para consultar as cidades por UF](https://servicodados.ibge.gov.br/api/docs/localidades)</li>
 </ul>
 
 ### TELAS
